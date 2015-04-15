@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    	<title>D3 Practice</title>
+    	<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+    	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+
+    	<link rel="stylesheet" href="/static/style.css">
+
+        
+    </head>
+    <body>
+        <h1>D3 Practice</h1>
+        <p>This is a really interesting paragraph.</p>
+
+        <p> This is a middle paragraph </p>
+
+
+        <script>
+            d3.select("body").append("p").text("New paragraph!");
+
+            d3.selectAll("p").append("h3").text("header!!!!");
+
+        </script>
+
+        <script type="text/javascript" src="/static/d3_js.js"></script>
+    </body>
+</html>
