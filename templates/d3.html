@@ -44,10 +44,13 @@
         return'rgb(' + randomColor + ',186,47)'
         });
 
-    $('circle').on("click", function() {
-      // alert("success part 1");
-      d3.select("circle")
-      .transition()
+
+    circles.on("click", function (d) {
+      circle = d3.select(this);
+      circle.transition()
+      .attr("r", function(d) {
+        return d*3;
+      })
       .duration(2000)
       .attr("fill", "red")
     });
