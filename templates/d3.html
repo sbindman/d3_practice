@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<title>D3 Practice</title>
+  	<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+  	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+  	<link rel="stylesheet" href="/static/style.css">
+
+    <h1>D3 Practice</h1>  
+  </head>
+
+  <body>
+  <script>
+
+    var dataset = [ 5, 10, 15, 20, 25 ];
+    var width = "1000px";
+    var height = "400px";
+
+    var svg = d3.select("body").append("svg")
+    .style("background-color", "#245B70")
+    .attr("width", width)
+    .attr("height", height);
+
+    var circles = svg.selectAll("circle")
+         .data(dataset)
+         .enter()
+         .append("circle");
+
+    circles.attr("cx", function(d, i) {
+        return (i * (parseInt(width) / dataset.length) + 50);
+        })
+       .attr("cy", parseInt(height) / 2)
+       .attr("r", 25)
+       .attr("fill", "#96D7EF")
+       .attr("stroke", "white");
+
+    circles.transition()
+       .delay(function(d , i) {
+        return i * 100;
+        })
+       .duration(2000)
+       .attr("fill", function(d,i) {
+        var randomColor = 100 + i * 25;
+        return'rgb(' + randomColor + ',186,47)'
+        });
+
+    $('circle').on("click", function() {
+      // alert("success part 1");
+      d3.select("circle")
+      .transition()
+      .duration(2000)
+      .attr("fill", "red")
+    });
+    // var xPosition = 50;
+    // var bars = svg.selectAll("rect");
+    //    bars.data(dataset)
+    //    .enter()
+    //    .append("rect")
+    //    .attr("x", function( i) {
+    //     return i * 5;
+    //     })
+    //    .attr("y", 100)
+    //    .attr("width", 20)
+    //    .attr("height", 20)
+    //    .transition()
+    //    .delay(function (d,i) {
+    //     return i * 5;
+    //    })
+    //    .duration(5000)
+    //    .attr("height", function(data) {
+    //     return 500 - (data * 10);
+    //    })
+    //    .attr("fill", function(d) {
+    //     return "rgb(0, 0, " + (d * 10) + ")";
+    //     });
+
+
+    // svg.selectAll("text")
+    //    .data(dataset)
+    //    .enter()
+    //    .append("text")
+    //    .text(function(d) {
+    //    return d;
+    //     })
+    //    .attr("x", function(d, i) {
+    //         return i * (200 / dataset.length);
+    //    })
+    //    .attr("y", function(d) {
+    //         return 200 - (d * 4);
+    //    });
+
+  </script>
+
+
+
+  </body>
+</html>

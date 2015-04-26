@@ -12,17 +12,119 @@
     </head>
     <body>
         <h1>D3 Practice</h1>
-        <p>This is a really interesting paragraph.</p>
 
-        <p> This is a middle paragraph </p>
+                <!-- working with svgs -->
+        <svg width="800" height="800">
+            <rect x="0" y="0" width="500" height="20"/>
+            <!-- <circle cx="250" cy="55" r="50"/> -->
 
+            <text x="250" y="50" font-family="sans-serif"
+                font-size="25" fill="gray">Easy-peasy</text>
+
+
+
+        </svg>
 
         <script>
-            d3.select("body").append("p").text("New paragraph!");
 
-            d3.selectAll("p").append("h3").text("header!!!!");
+            var dataset = [ 5, 10, 15, 20, 25 ];
+
+            var svg = d3.select("svg").style("background-color", "green");
+
+            var circles = svg.selectAll("circle")
+                 .data(dataset)
+                 .enter()
+                 .append("circle");
+
+            
+            circles.attr("cx", function(d) {
+                return (d * 10) + 50;
+                })
+               .attr("cy", 50)
+               .attr("r", function(d) {
+                    return d;
+               })
+               .attr("stroke", "white")
+               .attr("stroke-width", function(d) {
+                return d/3;
+                });
+
+            var xPosition = 50;
+            var bars = svg.selectAll("rect");
+               bars.data(dataset)
+               .enter()
+               .append("rect")
+               .attr("x", function( i) {
+                return i * 5;
+                })
+               .attr("y", 100)
+               .attr("width", 20)
+               .attr("height", 20)
+               .transition()
+               .delay(function (d,i) {
+                return i * 5;
+               })
+               .duration(5000)
+               .attr("height", function(data) {
+                return 500 - (data * 10);
+               })
+               .attr("fill", function(d) {
+                return "rgb(0, 0, " + (d * 10) + ")";
+                });
+
+
+            svg.selectAll("text")
+               .data(dataset)
+               .enter()
+               .append("text")
+               .text(function(d) {
+               return d;
+                })
+               .attr("x", function(d, i) {
+                    return i * (200 / dataset.length);
+               })
+               .attr("y", function(d) {
+                    return 200 - (d * 4);
+               });
 
         </script>
+
+        <br>
+        <br>
+
+
+
+        <!-- d3 tests -->
+        // <script>
+
+        //     var dataset = [ 25, 7, 5, 26, 11, 8, 25, 14, 23, 19,
+        //         14, 11, 22, 29, 11, 13, 12, 17, 18, 10,
+        //         24, 18, 25, 9, 3 ];
+
+        //     // d3.select("body").append("p").text("New paragraph!");
+
+        //     // d3.selectAll("p").append("h3").text("header!!!!");
+
+
+        //     // d3.select("body").selectAll("h2").data(dataset).enter().append("h3").text(function(d) {return d*5}).style("color", function(data) {
+        //     //                     if (data > 15) {   //Threshold of 15
+        //     //                         return "red";
+        //     //                     } else {
+        //     //                         return "black";
+        //     //                     }
+        //     //                 });
+
+        //     d3.select("body").selectAll("h4").data(dataset).enter().append("div").attr("class", "bar")
+        //         .style("height", function(data) {
+        //             var height = data * 10 + "px";
+        //             return height;
+        //         });   
+
+        // </script>
+
+
+
+
 
         <script type="text/javascript" src="/static/d3_js.js"></script>
     </body>

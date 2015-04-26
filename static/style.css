@@ -5,3 +5,22 @@ p {
 h3 {
 	background-color: yellow;
 }
+
+.bar {
+	display: inline-block;
+    width: 20px;
+    height: 75px;
+    background-color: teal;
+    border: 1px solid white;
+}
+
+
+svg {
+	background-color: blue;
+}
+
+.circled {
+	r: 20;
+	cx: 50px;
+	fill: orange;
+}
