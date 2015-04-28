@@ -12,6 +12,22 @@ def index():
 def d3():
     return render_template("d3.html")
 
+@app.route('/hex')
+def hex():
+	return render_template("hex.html")
+
+
+@app.route('/map')
+def map():
+	return render_template("map.html")
+
+@app.route('/scooters')
+def scooters():
+	return render_template("scooters.html")
+
+@app.route('/grid')
+def grid():
+	return render_template("grid.html")
 
 if __name__ == "__main__":
     app.run( debug=True)

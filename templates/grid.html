@@ -1,6 +1,18 @@
 
 <html>
 <head>
+	<style type="text/css">
+
+		#hour {
+			border: 1px solid black;
+		}
+
+		#number {
+			border: 1px solid black;
+		}
+
+	</style>
+
 <title>Grid using d3.js</title>
 <script type="text/javascript" src="http://mbostock.github.com/d3/d3.v2.js"></script>
 <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
@@ -9,7 +21,10 @@
 
 <div id="chart"></div>
 Scooter Number
-<div id="number"><div>
+<div id="number"></div>
+<br>
+Hour
+<div id="hour"></div>
 
 <script>
 
@@ -80,6 +95,18 @@ function usageMap(id, width, height, data)
                  })
                  .on('mouseover', function(d) {
                  	$("#number").text(d.id);
+                 	$("#hour").text(d.time);
+                 	d3.select(this).style("fill", "green");
+                 })
+                 .on('mouseout', function() {
+                 	d3.select(this)
+                 	.style("fill", function(d) {
+	                 	if (d.value === 1) {
+	                 		return "black";
+	                 	} else if (d.value === 0) {
+	                 		return "yellow"
+	                 	} else return "blue";
+	                 })
                  })
                  .on('click', function() {
                  });
@@ -93,8 +120,8 @@ function matrixData(width, height, scooters)
     var data = [];
     var gridItemWidth = 30;
     var gridItemHeight = 30;
-    var startX = 30;
-    var startY = 30;
+    var startX = 5;
+    var startY = 5;
     var stepX = gridItemWidth;
     var stepY = gridItemHeight;
     var xpos = startX;
