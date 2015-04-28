@@ -42,18 +42,37 @@
        .attr("fill", function(d,i) {
         var randomColor = 100 + i * 25;
         return'rgb(' + randomColor + ',186,47)'
-        });
+        })
+       .transition()
+       .delay(5000)
+       .duration(2000)
+       .attr("cy", function(d,i) {
+        var h = i * (parseInt(height) / dataset.length) + 50;
+        return h;
+        })
+       .attr("cx", 50);
 
 
-    circles.on("click", function (d) {
+    circles.on("mouseover", function () {
       circle = d3.select(this);
       circle.transition()
       .attr("r", function(d) {
         return d*3;
       })
-      .duration(2000)
-      .attr("fill", "red")
+      .duration(1000)
+      .attr("fill", "white")
     });
+
+
+    circles.on("mouseout", function () {
+      circle = d3.select(this);
+      circle.transition()
+      .duration(2000)
+      .attr("r", 25)
+    });
+
+
+ 
     // var xPosition = 50;
     // var bars = svg.selectAll("rect");
     //    bars.data(dataset)

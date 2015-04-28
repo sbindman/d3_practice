@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>D3 Practice</title>
+    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="/static/style.css">
+
+    <h1>D3 Practice</h1>  
+  </head>
+
+  <body>
+  <script>
+
+  var jsonRectangles = [
+   {
+    "id":5,
+    "dataset": [ 0,0,1,0,1,1,1,1,0,0,0,0,1,1,1,0,0,0,1 ]
+   }, {
+    "id":4,
+    "dataset": [ 1,1,1,0,1,1,0,0,0,0,0,0,1,1,1,0,0,1,1 ]
+   }, {
+    "id":9,
+    "dataset": [ 2,0,1,0,1,1,1,1,1,1,1,0,1,1,1,0,0,0,0 ]
+   }];
+
+    var dataset = [ 0,1,0,1,1,1,1,0,0,0,0,1,1,1,0,0,0,1 ];
+
+    var matrix = [
+      [ 0,  1,  2,  3],
+      [ 4,  5,  6,  7],
+      [ 8,  9,  1,  1],
+      [ 1,  1,  1,  1],
+    ];
+
+    var width = "1000px";
+    var height = "400px";
+
+    var svg = d3.select("body").append("svg")
+    .style("background-color", "black")
+    .attr("width", width)
+    .attr("height", height);
+
+
+    var rectangles = svg.selectAll("rect")
+         .data(jsonRectangles)
+         .enter()
+         .append("rect")
+         .attr("width", 100)
+         .attr("height", 100)
+         .attr("x", function(d, i) {
+          return (parseInt(d.dataset[i]) * 10);
+          })
+          .attr("y", function(d, i) {
+          return (parseInt(d.dataset) * 10);
+          })
+         .attr("fill", function(d, i) {
+           if (d.dataset===1) return "#96D7EF";
+           // else return "white";
+           })
+         .append("rect")
+         .attr("width", 20)
+         .attr("height", 10)
+         .attr("fill", "blue");
+         // .attr("stroke", "red");
+
+
+    // circles.transition()
+    //    .delay(function(d , i) {
+    //     return i * 100;
+    //     })
+    //    .duration(2000)
+    //    .attr("fill", function(d,i) {
+    //     var randomColor = 100 + i * 25;
+    //     return'rgb(' + randomColor + ',186,47)'
+    //     })
+    //    .transition()
+    //    .delay(5000)
+    //    .duration(2000)
+    //    .attr("cy", function(d,i) {
+    //     var h = i * (parseInt(height) / dataset.length) + 50;
+    //     return h;
+    //     })
+    //    .attr("cx", 50);
+
+
+    // circles.on("mouseover", function () {
+    //   circle = d3.select(this);
+    //   circle.transition()
+    //   .attr("r", function(d) {
+    //     return d*3;
+    //   })
+    //   .duration(1000)
+    //   .attr("fill", "white")
+    // });
+
+
+    // circles.on("mouseout", function () {
+    //   circle = d3.select(this);
+    //   circle.transition()
+    //   .duration(2000)
+    //   .attr("r", 25)
+    // });
+
+  </script>
+
+
+
+  </body>
+</html>
